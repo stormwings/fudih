@@ -1,0 +1,29 @@
+services:
+  api:
+    build:
+      context: ./fudih-api
+      dockerfile: Dockerfile.dev
+    container_name: fudih-api-dev
+    ports:
+      - "8000:8000"
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    volumes:
+      - ./fudih-api/app:/app/app
+    restart: unless-stopped
+
+  client:
+    build:
+      context: ./fudih-client
+      dockerfile: Dockerfile.dev
+    container_name: fudih-client-dev
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL:-http://localhost:8000}
+    volumes:
+      - ./fudih-client/src:/app/src
+      - ./fudih-client/public:/app/public
+    depends_on:
+      - api
+    restart: unless-stopped

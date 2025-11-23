@@ -1,0 +1,33 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Build output
+.next/
+out/
+build/
+
+# Environment files
+.env
+.env*.local
+
+# IDE
+.vscode/
+.idea/
+
+# Testing
+coverage/
+
+# Misc
+*.log
+.DS_Store
+Thumbs.db
+npm-debug.log*
+
+# Docker
+Dockerfile*
+.dockerignore
+
+# Documentation
+README.md
